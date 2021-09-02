@@ -1,0 +1,14 @@
+.cart-buy-button{
+    background-color: #4F7942 !important;
+    margin: 1% !important;
+}
+
+.cart-decline-button{
+    margin: 1% !important;
+}
+
+.cart-buttons-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
