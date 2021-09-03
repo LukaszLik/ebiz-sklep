@@ -56,8 +56,8 @@ export default function LoginComponent() {
 
     const oauthLogin = (url: string) => {
         // window.location.assign("https://sklep-backend.azurewebsites.net" + url);
-        window.open("http://localhost:9000" + url);
-        console.log("http://localhost:9000" + url);
+        window.open("https://test2-324913.appspot.com/" + url);
+        // console.log("http://localhost:9000" + url);
     };
 
     return (
