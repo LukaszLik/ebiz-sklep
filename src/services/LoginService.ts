@@ -3,7 +3,7 @@ import axios from "axios";
 class LoginService{
     async signIn(email :string, password: string) {
         return axios
-            .post("https://https://sklep-back2.azurewebsites.net/api/signIn", {
+            .post("https://sklep-back2.azurewebsites.net/api/signIn", {
                 email,
                 password,
             })
@@ -14,7 +14,7 @@ class LoginService{
     }
 
     async signUp(email :string, firstName :string, lastName :string, password :string) {
-        return axios.post("https://https://sklep-back2.azurewebsites.net/api/signUp", {
+        return axios.post("https://sklep-back2.azurewebsites.net/api/signUp", {
             email: email,
             password: password,
             firstName: firstName,

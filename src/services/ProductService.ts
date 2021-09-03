@@ -3,7 +3,7 @@ import {Product} from "../components/cart/Cart";
 
 class ProductService {
     async getProducts() {
-        return axios.get(`https://https://sklep-back2.azurewebsites.net/api/products`)
+        return axios.get(`https://sklep-back2.azurewebsites.net/api/products`)
         .then(res => {
           return res.data;
         })
