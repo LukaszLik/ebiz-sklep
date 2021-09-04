@@ -7,10 +7,6 @@ import './Product.css';
 
   export default function Product(props: any) {
 
-      const handleAddToCart = () => {
-          console.log("pyk")
-      }
-
     return (
       <Card className="card" variant="outlined">
         <CardContent>
@@ -25,7 +21,7 @@ import './Product.css';
           </Typography>
         </CardContent>
         <CardActions>
-          <Button onClick={handleAddToCart} variant="contained" color="primary" size="small">Do koszyka</Button>
+          <Button variant="contained" color="primary" size="small">Do koszyka</Button>
         </CardActions>
       </Card>
     );

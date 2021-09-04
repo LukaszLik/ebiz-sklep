@@ -2,8 +2,7 @@ import React from "react";
 import "./LoginComponentStyles.css"
 import { useHistory } from "react-router-dom";
 import {
-    Button,
-    FilledInput,
+    Button, CircularProgress,
     FormControl,
     IconButton,
     InputAdornment,
@@ -29,18 +28,24 @@ export default function LoginComponent() {
         showPassword: false,
     });
 
+    const [loading, setLoading] = React.useState(false);
+
     const [loginError, setLoginError] = React.useState(false);
     let history = useHistory();
 
     const handleLoginButton = () => {
-        // console.log(state.login + " " + state.password)
-        LoginService.signIn(state.login, state.password).then( () => {
-            history.push("/products");
-            history.go(0);
-            }
-        ).catch( (error) => {
+        if (!loading) {
+            setLoading(true);
             setLoginError(true);
-        });
+            LoginService.signIn(state.login, state.password).then(() => {
+                    history.push("/products");
+                    history.go(0);
+                }
+            ).catch(() => {
+                // setLoginError(false);
+                setLoading(false)
+            });
+        }
     }
 
     const handleChange = (prop: keyof State) => (
@@ -59,11 +64,12 @@ export default function LoginComponent() {
         // window.open("https://test2-324913.appspot.com" + url);
         // console.log("http://localhost:9000" + url);
     };
+//  "start": "serve -s build",
 
     return (
         <div className="page">
             <div className="container">
-                <div className='text'>ZALOGUJ SIĘ</div>
+                <div className='text'>LOGOWANIE</div>
                 <div className="text-fields">
                     <TextField className="text-field" value={state.login} onChange={handleChange("login")} id="outlined-basic" label="Login" variant="outlined" />
                     <FormControl variant="outlined">
@@ -93,11 +99,19 @@ export default function LoginComponent() {
                     { loginError ?
                         <div className="error">Podałeś niepoprawny login lub hasło.</div>
                         :
-                        <div></div>
+                        <div/>
                     }
-                    <Button className="login-button" variant="contained" onClick={handleLoginButton}>ZALOGUJ SIĘ</Button>
+                    <Button
+                        className="login-button"
+                        variant="contained"
+                        onClick={handleLoginButton}
+                        disabled={loading}
+                    >
+                        ZALOGUJ SIĘ
+                    </Button>
                     <GoogleLoginButton style={{ width: "35vw" }} onClick={() => oauthLogin("/authenticate/google")}> <span>Zaloguj przez Gmaila</span></GoogleLoginButton>
                     <GithubLoginButton style={{ width: "35vw" }} onClick={() => oauthLogin("/authenticate/github")}> <span>Zaloguj przez GitHuba</span></GithubLoginButton>
+                    {loading && <CircularProgress size={32} className="login-spinner"/>}
 
                 </div>
             </div>

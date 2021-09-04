@@ -9,7 +9,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import FormControl from '@material-ui/core/FormControl';
-import {Button, FormHelperText} from "@material-ui/core";
+import {Button, CircularProgress, FormHelperText} from "@material-ui/core";
 import LoginService from "../../services/LoginService";
 import {useHistory} from "react-router-dom";
 
@@ -42,7 +42,6 @@ export default function RegisterComponent() {
     });
 
     let history = useHistory();
-    const [state, setState] = React.useState(false);
 
     const [registerError, setRegisterError] = React.useState(false);
 
@@ -51,11 +50,11 @@ export default function RegisterComponent() {
     const [emailError, setEmailError] = React.useState("");
     const [passwordError, setPasswordError] = React.useState("");
 
-    const classes = useStyles();
+    const [loading, setLoading] = React.useState(false);
 
     const validateEmail = (value: any) => {
         const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         setEmailError("" );
         if (value.length === 0) {
             setEmailError("Email jest wymagany.");
@@ -132,9 +131,11 @@ export default function RegisterComponent() {
 
         if (validate()) {
             console.log("SEND ITTT");
-            LoginService.signUp(values.email, values.name, values.surname, values.password).then( (response) => {
+            setLoading(true);
+            LoginService.signUp(values.email, values.name, values.surname, values.password).then( () => {
                 history.push("/login")
-            }).catch( (error) => {
+            }).catch( () => {
+                setLoading(false);
                 setRegisterError(true);
             });
         }
@@ -150,16 +151,15 @@ export default function RegisterComponent() {
         validateName(values.name);
         validatePassword(values.password);
 
-        if (nameError === "" && surnameError === "" && emailError === "" && passwordError === ""){
-            return true;
-        }
+        return nameError === "" && surnameError === "" && emailError === "" && passwordError === "";
 
-        return false;
     }
 
     return(
-        <div className="div-container">
-            <form className="div-container" onSubmit={handleRegisterButton}>
+        <div className="register-container">
+            <div className='text'>REJESTRACJA</div>
+
+            <form className="register-form" onSubmit={handleRegisterButton}>
             <TextField
                 onChange={handleName}
                 className="input-field"
@@ -213,9 +213,18 @@ export default function RegisterComponent() {
             </FormControl>
                 { registerError ? <p className="error">Podany adres email jest już w użyciu</p>
                     :
-                    <div></div>
+                    <div/>
                 }
-            <Button className="register-button" type="submit" onClick={validate} variant="contained">Zarejestruj</Button>
+            <Button
+                disabled={loading}
+                className="register-button"
+                type="submit" onClick={validate}
+                variant="contained"
+            >
+                Zarejestruj
+            </Button>
+                {loading && <CircularProgress size={32} className="register-spinner"/>}
+
             </form>
         </div>
 

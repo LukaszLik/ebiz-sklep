@@ -26,3 +26,11 @@
     background-color: #4F7942 !important;
 }
 
+.spinner{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+}

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import "./ProductPage.css";
 import ProductCard from "./ProductCard";
 import ProductService from "../../services/ProductService";
+import {CircularProgress} from "@material-ui/core";
 
 export class Product{
     categoryId: number;
@@ -28,6 +29,8 @@ export class Product{
 }
 
 export default function ProductsPage() {
+    // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
     // const [products, setProducts] = React.useState({
     //     productsArray: [] as Product[]
     // })
@@ -42,7 +45,7 @@ export default function ProductsPage() {
         })
     },[])
 
-    return loading ? ( <div>ŁADOWANIE</div>) :
+    return loading ? ( <div className="spinner"><CircularProgress /></div>) :
         (
             <div className="outer-div">
                 <div className="card-div">

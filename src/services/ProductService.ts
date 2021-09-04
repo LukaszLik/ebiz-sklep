@@ -20,7 +20,7 @@ class ProductService {
                 let vals = cookie.split("=")[1].split(",");
 
                 productsArr.push(new Product(parseInt(id), vals[0],
-                    parseInt(vals[1]), parseFloat(vals[2])));
+                    parseInt(vals[1]), parseFloat(vals[2]).toFixed(2)));
             }
         }
 

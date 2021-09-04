@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import RecordInCart from "../RecordInCart";
-import {Box, Button, Card, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Box, Button, Card, makeStyles, Typography} from "@material-ui/core";
 import ProductService from "../../services/ProductService";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
@@ -11,7 +11,7 @@ import {Link, useHistory} from "react-router-dom";
 import "./Cart.css";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     paperStyle: {
         minHeight: "20vh",
         width: "60vw",
@@ -27,9 +27,9 @@ export class Product{
     id: number;
     name: string;
     quantity: number;
-    price: number;
+    price: string;
 
-    constructor(id: number, name: string, quantity: number, price: number) {
+    constructor(id: number, name: string, quantity: number, price: string) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -94,9 +94,9 @@ export const Cart: React.FC = props => {
                                     <TableCell>Nazwa produktu</TableCell>
                                     <TableCell>Ilość</TableCell>
                                     <TableCell>Cena</TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
+                                    <TableCell/>
+                                    <TableCell/>
+                                    <TableCell/>
                                 </TableRow>
 
                                 {

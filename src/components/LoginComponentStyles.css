@@ -1,5 +1,5 @@
 .container{
-    position: absolute;
+    position: relative;
     width: 40%;
     height: 60%;
     min-height: 500px;
@@ -11,7 +11,7 @@
     justify-content: center;
     text-align: center;
     margin: auto;
-    top: 22vh;
+    top: 15vh;
     border-radius: 5px;
     border: 4px solid darkslategray;
 }
@@ -26,7 +26,8 @@
 .text{
     position: relative;
     text-align: center;
-    bottom: 12%;
+    bottom: 6%;
+    font-size: 32px;
 }
 
 .text-fields{
@@ -51,4 +52,13 @@
 .login-button{
     width: 35vw;
     background-color: #4F7942 !important;
+}
+
+.login-spinner{
+    /*position: relative;*/
+    display: flex;
+    /*width: 100%;*/
+    justify-content: center;
+    /*top: 50%;*/
+    left: 45%
 }

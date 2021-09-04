@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Box, Button, Card, CardContent, makeStyles, Typography} from "@material-ui/core";
+import {Button, Card, makeStyles, Typography} from "@material-ui/core";
 import "../../services/UserService";
 import UserService from "../../services/UserService";
 import ProductService from "../../services/ProductService";
@@ -9,7 +9,7 @@ import "./BuyComponent.css";
 import Divider from '@material-ui/core/Divider';
 import {useHistory} from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     paperStyle: {
         minHeight: "20vh",
         width: "60vw",
@@ -40,19 +40,12 @@ export default function BuyComponent(){
         let cookie = document.cookie.split("; ").find((row) => row.startsWith("email="));
 
         ProductService.getCartProducts().then((productsArr) => {
-            console.log(productsArr);
             setProducts(productsArr);
 
-
-            products.map((product: Product) => {
-                console.log("test" + product)
-            });
         });
 
         if (cookie){
-            console.log(cookie.split("=")[1]);
             UserService.getUserData(cookie.split("=")[1]).then((response) => {
-                console.log(response.data);
                 setState({...state, name: response.data.firstName, surname: response.data.lastName,
                     email: response.data.email, id: response.data.id});
 
@@ -65,9 +58,8 @@ export default function BuyComponent(){
     const sumPrice = () => {
         let price = 0;
         for (let product of products){
-            price += product.quantity * product.price;
+            price += product.quantity * parseFloat(product.price);
         }
-
         return price;
     }
 
@@ -99,7 +91,7 @@ export default function BuyComponent(){
                     })
                 }
                 <Divider/>
-                <p className="price">Cena: {sumPrice()}</p>
+                <p className="price">Cena: {sumPrice().toFixed(2)} zł</p>
                 <Button className="buy-button" variant="contained" onClick={orderHandler}>Kup</Button>
             </Card>
         </div>
