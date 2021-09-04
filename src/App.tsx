@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
 import {Route, Switch} from "react-router-dom";
-import ProductPage from "./components/ProductPage";
-import {MainPage} from "./components/MainPage";
 import {Nav} from "./components/Nav";
 import ProductsPage from "./components/productPage/ProductsPage";
 import OrderPage from "./components/OrderPage";
@@ -12,12 +10,6 @@ import Product from "./components/Product"
 // @ts-ignore
 import RegisterComponent from "./components/register/RegisterComponent.tsx";
 import BuyComponent from "./components/buy/BuyComponent";
-
-interface State {
-}
-
-interface Props {
-}
 
 export const App: React.FC = props => {
 

@@ -42,7 +42,6 @@ export default function LoginComponent() {
                     history.go(0);
                 }
             ).catch(() => {
-                // setLoginError(false);
                 setLoading(false)
             });
         }
@@ -61,10 +60,7 @@ export default function LoginComponent() {
 
     const oauthLogin = (url: string) => {
         window.location.assign("https://sklep-back2.azurewebsites.net" + url);
-        // window.open("https://test2-324913.appspot.com" + url);
-        // console.log("http://localhost:9000" + url);
     };
-//  "start": "serve -s build",
 
     return (
         <div className="page">

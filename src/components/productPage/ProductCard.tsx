@@ -17,7 +17,6 @@ export default function ProductCard(props: any){
     const [snackbar, setSnackbar] = React.useState(false);
 
     const handleAddToCart = () => {
-        // items= id, name, quantity, price; id, name, quantity, price
         if(LoginService.isLogged()) {
             let allCookies = document.cookie.split(";");
             for (let cookie of allCookies) {
@@ -36,7 +35,6 @@ export default function ProductCard(props: any){
         else{
             console.log("Niezlogowany użytkownik");
             setSnackbar(true);
-            // snack.enqueueSnackbar("REEE");
         }
 
     }

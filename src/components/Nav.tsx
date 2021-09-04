@@ -26,9 +26,9 @@ export const Nav: React.FC = props => {
 
     const handleLogOut = () => {
         let allCookies = document.cookie.split(";");
-        for (let i = 0; i < allCookies.length; i++)
+        for (let cookie of allCookies)
             document.cookie =
-                allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+                cookie + "=;expires=" + new Date(0).toUTCString();
         history.push("/products");
         history.go(0);
     }
@@ -36,7 +36,7 @@ export const Nav: React.FC = props => {
     return (
         <Box className="nav-box">
             <Link className="nav-link" to={"/products"}>
-                <img className="logo" src="https://cdn.frankerfacez.com/emoticon/236895/4"/>
+                <img className="logo" src="https://cdn.frankerfacez.com/emoticon/236895/4" alt="hypers"/>
                 <Typography variant={"h5"}>Żabbka</Typography>
             </Link>
 
@@ -48,9 +48,9 @@ export const Nav: React.FC = props => {
                     <Button component={Link} to="/login" className="button" variant="contained">Zaloguj się</Button>
                 }
                 { logged ?
-                    <IconButton component={Link} to="/cart" className="icon-button"><ShoppingCartOutlinedIcon className="icon"></ShoppingCartOutlinedIcon></IconButton>
+                    <IconButton component={Link} to="/cart" className="icon-button"><ShoppingCartOutlinedIcon className="icon"/></IconButton>
                     :
-                    <div></div>
+                    <div/>
                 }
                 { logged ?
                     <Button onClick={handleLogOut} className="button" variant="contained">Wyloguj się</Button>

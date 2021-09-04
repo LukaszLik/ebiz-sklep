@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import {Button, Card, makeStyles, Typography} from "@material-ui/core";
-import "../../services/UserService";
 import UserService from "../../services/UserService";
 import ProductService from "../../services/ProductService";
 import CartService from "../../services/CartService";

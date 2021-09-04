@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Card, Typography, Box, Button, Grid} from "@material-ui/core";
+import {Card, Typography, Box, Button} from "@material-ui/core";
 import "../images/placeholder.jpeg";
 import {RouteComponentProps, withRouter} from "react-router-dom"
 import "../styles/ProductPage.css";
@@ -19,7 +19,7 @@ interface State {
 
 const description: string = `TEST`
 
-const ProductPage: React.FC<ProductPageProps> = ({match}) => {
+const ProductPage: React.FC<ProductPageProps> = ({}) => {
 
     const [state, setState] = useState<State>({
         isLoading: true,
@@ -32,7 +32,7 @@ const ProductPage: React.FC<ProductPageProps> = ({match}) => {
         <Box className={"main-container"}>
             <Card style={{minWidth: "90vw", minHeight: "90vh", padding:"2vh 2vw 2vh 2vw"}}>
                 <Box style={{display: "flex"}}>
-                    <img src={"placeholder.jpeg"}/>
+                    <img src={"placeholder.jpeg"} alt="placeholder"/>
                     <Box style={{display: "flex", flexDirection:"row", minWidth: "50%", justifyContent:"flex-end"}}>
                         <Box style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                             <Typography variant={"h1"}>{state.title}</Typography>
