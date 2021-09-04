@@ -19,7 +19,7 @@ interface State {
 
 const description: string = `TEST`;
 
-const ProductPage: React.FC<ProductPageProps> = ({}) => {
+const ProductPage: React.FC<ProductPageProps> = () => {
   const [state, setState] = useState<State>({
     isLoading: true,
     title: "Test",
