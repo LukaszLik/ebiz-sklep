@@ -7,22 +7,24 @@ interface State {}
 interface Props {}
 
 export class ProductList extends React.Component<Props, State> {
-    state = {
-        productList: []
-    }
+  state = {
+    productList: [],
+  };
 
-    async componentDidMount() {
-        const productList = await ProductService.getProducts();
-        this.setState({productList})
-    }
+  async componentDidMount() {
+    const productList = await ProductService.getProducts();
+    this.setState({ productList });
+  }
 
-    render() {
+  render() {
     return (
-        <div className="card-area">
-            <div className="card-container">
-                { this.state.productList.map((product, index) => <Product key={index} product={product}/>)}
-            </div>
+      <div className="card-area">
+        <div className="card-container">
+          {this.state.productList.map((product, index) => (
+            <Product key={index} product={product} />
+          ))}
         </div>
-    )
-    }
+      </div>
+    );
+  }
 }
