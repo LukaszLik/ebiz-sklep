@@ -55,8 +55,8 @@ export default function LoginComponent() {
     };
 
     const oauthLogin = (url: string) => {
-        // window.location.assign("https://sklep-backend.azurewebsites.net" + url);
-        window.open("https://test2-324913.appspot.com/" + url);
+        window.location.assign("https://sklep-back2.azurewebsites.net" + url);
+        // window.open("https://test2-324913.appspot.com" + url);
         // console.log("http://localhost:9000" + url);
     };
 
