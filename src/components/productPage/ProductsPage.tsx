@@ -3,6 +3,7 @@ import "./ProductPage.css";
 import ProductCard from "./ProductCard";
 import ProductService from "../../services/ProductService";
 import { CircularProgress } from "@material-ui/core";
+import {useLocation} from "react-router-dom";
 
 export class Product {
   categoryId: number;
@@ -40,11 +41,32 @@ export default function ProductsPage() {
 
   const [loading, setLoading] = React.useState(true);
 
+  let location = useLocation();
+
   useEffect(() => {
     ProductService.getProducts().then((response) => {
       setProducts(response);
       setLoading(false);
     });
+  }, []);
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const paramEmail = query.get("email");
+    const paramAuth = query.get("authenticator");
+    if (paramEmail) {
+      document.cookie = `email=${paramEmail}; path=/`;
+      document.cookie = `oAuth=true; path=/`;
+      if (paramAuth != null) {
+        document.cookie = `authenticator=${decodeURIComponent(
+            paramAuth
+        ).replaceAll(" ", "+")}; path=/`;
+      }
+      window.location.href = "/products";
+    }
+
+    console.log(paramAuth)
+    console.log(paramEmail)
   }, []);
 
   return loading ? (

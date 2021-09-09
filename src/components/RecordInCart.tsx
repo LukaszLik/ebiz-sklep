@@ -60,26 +60,26 @@ export default function RecordInCart(props: any) {
   return (
     <TableRow>
       <TableCell>{props.name}</TableCell>
-      <TableCell>{product}</TableCell>
+      <TableCell>
+        <div className="quantity-div">
+          <IconButton
+            onClick={handleAdd}
+            color="primary"
+            aria-label="add to shopping cart"
+          >
+            <Add />
+          </IconButton>
+          <div className="number-of-products">{product}</div>
+          <IconButton
+            onClick={handleSubtract}
+            color="primary"
+            aria-label="add to shopping cart"
+          >
+            <Remove />
+          </IconButton>
+        </div>
+      </TableCell>
       <TableCell>{price} zł</TableCell>
-      <TableCell>
-        <IconButton
-          onClick={handleAdd}
-          color="primary"
-          aria-label="add to shopping cart"
-        >
-          <Add />
-        </IconButton>
-      </TableCell>
-      <TableCell>
-        <IconButton
-          onClick={handleSubtract}
-          color="primary"
-          aria-label="add to shopping cart"
-        >
-          <Remove />
-        </IconButton>
-      </TableCell>
       <TableCell>
         <IconButton
           onClick={handleDelete}

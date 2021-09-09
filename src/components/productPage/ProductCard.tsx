@@ -15,6 +15,7 @@ function Alert(props: AlertProps) {
 
 export default function ProductCard(props: any) {
   const [snackbar, setSnackbar] = React.useState(false);
+  const [addedTocart, setAddedToCart] = React.useState(false);
 
   const handleAddToCart = () => {
     if (LoginService.isLogged()) {
@@ -31,6 +32,8 @@ export default function ProductCard(props: any) {
           document.cookie = `${props.id}=${props.name}, 1, ${props.price}; path=/`;
         }
       }
+      setSnackbar(true);
+      setAddedToCart(true);
     } else {
       console.log("Niezlogowany użytkownik");
       setSnackbar(true);
@@ -67,11 +70,27 @@ export default function ProductCard(props: any) {
         </div>
       </CardActions>
       {snackbar ? (
-        <Snackbar open={snackbar} autoHideDuration={2000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="info">
-            Zaloguj się aby dodać produkt do koszyka!
-          </Alert>
-        </Snackbar>
+        addedTocart ? (
+          <Snackbar
+            open={snackbar}
+            autoHideDuration={2000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} severity="success">
+              Pomyślnie dodano {props.name} do koszyka!
+            </Alert>
+          </Snackbar>
+        ) : (
+          <Snackbar
+            open={snackbar}
+            autoHideDuration={2000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} severity="info">
+              Zaloguj się aby dodać produkt do koszyka!
+            </Alert>
+          </Snackbar>
+        )
       ) : (
         <div style={{ display: "none" }} />
       )}

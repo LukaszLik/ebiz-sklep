@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   paperStyle: {
-    minHeight: "20vh",
+    minHeight: "500px",
     width: "60vw",
     outlineColor: "blue",
     border: "darkslategray 4px solid",
@@ -77,11 +77,10 @@ export default function BuyComponent() {
     <div>Ładowanie</div>
   ) : (
     <div className="buy-box">
-      <Typography variant="h3" className="titleStyle">
-        Podsumowanie zamówienia
-      </Typography>
-
       <Card className={classes.paperStyle} variant="outlined">
+          <Typography variant="h4" className="titleStyle">
+              Podsumowanie zamówienia
+          </Typography>
         <p>Imię: {state.name}</p>
         <p>Nazwisko: {state.surname}</p>
         <p>Email: {state.email}</p>

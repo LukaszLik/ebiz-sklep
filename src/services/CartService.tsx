@@ -10,7 +10,7 @@ class CartService {
   }
 
   async buyProducts(userId: number, price: number) {
-    axios.post("https://sklep-back2.azurewebsites.net/api/addOrder", {
+    axios.post("https://sklep-back2.azurewebsites.net/api/addorder", {
       userId,
       price,
     });

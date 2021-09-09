@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import RecordInCart from "../RecordInCart";
-import { Box, Button, Card, makeStyles, Typography } from "@material-ui/core";
+import {Box, Button, Card, makeStyles, Tooltip, Typography} from "@material-ui/core";
 import ProductService from "../../services/ProductService";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
@@ -12,7 +12,7 @@ import "./Cart.css";
 
 const useStyles = makeStyles(() => ({
   paperStyle: {
-    minHeight: "20vh",
+    minHeight: "500px",
     width: "60vw",
     outlineColor: "blue",
     border: "darkslategray 4px solid",
@@ -73,32 +73,39 @@ export const Cart: React.FC = () => {
       alignSelf="center"
       alignItems="center"
       flexDirection="column"
-      justifyContent="center"
-      style={{ minHeight: "90vh" }}
+      style={{ position: "relative", minHeight: "90vh"}}
     >
-      <Typography variant="h3" className="titleStyle">
-        Twój Koszyk
-      </Typography>
-
       <Card className={classes.paperStyle} variant="outlined">
-        <Box style={{ minHeight: "18vh" }}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableRow>
-                <TableCell>Nazwa produktu</TableCell>
-                <TableCell>Ilość</TableCell>
-                <TableCell>Cena</TableCell>
-                <TableCell />
-                <TableCell />
-                <TableCell />
-              </TableRow>
+        <Typography variant="h4" className="titleStyle">
+          Koszyk
+        </Typography>
 
-              {products.map((product) => {
-                return <RecordInCart {...product} />;
-              })}
-            </Table>
-          </TableContainer>
-        </Box>
+        { products.length === 0 ?
+            <Typography variant="h5" className="empty-cart" >
+              Twój koszyk jest pusty, napełnij go na stronie produktów.
+            </Typography>
+
+            :
+
+          <Box style={{minHeight: "18vh"}}>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableRow>
+                  <TableCell>Nazwa produktu</TableCell>
+                  <TableCell>
+                    <div className="quantity-cell">Ilość</div>
+                  </TableCell>
+                  <TableCell>Cena</TableCell>
+                  <TableCell/>
+                </TableRow>
+
+                {products.map((product) => {
+                  return <RecordInCart {...product} />;
+                })}
+              </Table>
+            </TableContainer>
+          </Box>
+        }
 
         <div className="cart-buttons-div">
           <Button
@@ -109,7 +116,7 @@ export const Cart: React.FC = () => {
             component={Link}
             to="/products"
           >
-            Anuluj
+            Powrót
           </Button>
           {products.length > 0 ? (
             <Button
@@ -121,6 +128,8 @@ export const Cart: React.FC = () => {
               Kup
             </Button>
           ) : (
+              <Tooltip title="Dodaj produkty do kupienia" arrow>
+                <span>
             <Button
               onClick={handleBuyButton}
               variant="contained"
@@ -131,6 +140,8 @@ export const Cart: React.FC = () => {
             >
               Kup
             </Button>
+                  </span>
+              </Tooltip>
           )}
         </div>
       </Card>

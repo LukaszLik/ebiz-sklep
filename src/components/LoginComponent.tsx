@@ -40,13 +40,14 @@ export default function LoginComponent() {
   const handleLoginButton = () => {
     if (!loading) {
       setLoading(true);
-      setLoginError(true);
+      setLoginError(false);
       LoginService.signIn(state.login, state.password)
         .then(() => {
           history.push("/products");
           history.go(0);
         })
         .catch(() => {
+          setLoginError(true);
           setLoading(false);
         });
     }
