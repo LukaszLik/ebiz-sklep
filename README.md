@@ -1,4 +1,3 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=LukaszLik_ebiz-sklep)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=LukaszLik_ebiz-sklep&metric=bugs)](https://sonarcloud.io/dashboard?id=LukaszLik_ebiz-sklep)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=LukaszLik_ebiz-sklep&metric=code_smells)](https://sonarcloud.io/dashboard?id=LukaszLik_ebiz-sklep)
 
